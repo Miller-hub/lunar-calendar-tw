@@ -1,9 +1,15 @@
 
 function convertToLunar() {
   const year = parseInt(document.getElementById("solarYear").value);
-  if (isNaN(year)) return;
-  const lunar = Lunar.fromYmd(year, 1, 1);
-  const result = `農曆年份：${lunar.getYearInChinese()}（${lunar.getGanZhiYear()}年，${lunar.getYearShengXiao()}）`;
+  if (isNaN(year)) {
+    document.getElementById("lunarResult").textContent = "請輸入有效的西元年份";
+    return;
+  }
+
+  const solar = Solar.fromYmd(year, 1, 1);
+  const lunar = Lunar.fromDate(solar.getDate());
+
+  const result = `農曆年份：${lunar.getYear()}（${lunar.getGanZhiYear()}年，屬${lunar.getZodiac()}）`;
   document.getElementById("lunarResult").textContent = result;
 }
 
@@ -12,16 +18,22 @@ function clearSolar() {
   document.getElementById("lunarResult").textContent = "";
 }
 
-function convertRocToGregorian() {
-  const rocYear = parseInt(document.getElementById("rocYear").value);
-  if (isNaN(rocYear)) return;
-  const gregorian = rocYear + 1911;
-  const lunar = Lunar.fromYmd(gregorian, 1, 1);
-  const result = `西元：${gregorian} 年（${lunar.getGanZhiYear()}年，${lunar.getYearShengXiao()}）`;
+function convertToSolar() {
+  const year = parseInt(document.getElementById("lunarYear").value);
+  if (isNaN(year)) {
+    document.getElementById("solarResult").textContent = "請輸入有效的民國年（例：114）";
+    return;
+  }
+
+  const solarYear = year + 1911;
+  const solar = Solar.fromYmd(solarYear, 1, 1);
+  const lunar = Lunar.fromDate(solar.getDate());
+
+  const result = `西元年份：${solarYear}（${lunar.getGanZhiYear()}年，屬${lunar.getZodiac()}）`;
   document.getElementById("solarResult").textContent = result;
 }
 
-function clearRoc() {
-  document.getElementById("rocYear").value = "";
+function clearLunar() {
+  document.getElementById("lunarYear").value = "";
   document.getElementById("solarResult").textContent = "";
 }
