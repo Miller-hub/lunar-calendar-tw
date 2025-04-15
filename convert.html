@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>農民曆轉換工具</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>農民曆轉換工具</h1>
+    <nav>
+      <a href="index.html">今天宜忌</a>
+      <a href="convert.html" class="active">日期轉換</a>
+      <a href="jieqi.html">節氣對照</a>
+      <a href="zodiac.html">生肖查詢</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>西元轉農曆</h2>
+      <label for="solarYear">請輸入西元年：</label>
+      <input type="number" id="solarYear" placeholder="例如：2025" />
+      <button onclick="convertToLunar()">轉換</button>
+      <button onclick="clearSolar()">清除</button>
+      <p id="lunarResult"></p>
+    </section>
+
+    <section>
+      <h2>農曆轉西元</h2>
+      <label for="lunarYear">請輸入農曆年：</label>
+      <input type="number" id="lunarYear" placeholder="例如：乙巳年" />
+      <button onclick="convertToSolar()">轉換</button>
+      <button onclick="clearLunar()">清除</button>
+      <p id="solarResult"></p>
+    </section>
+  </main>
+
+  <script src="lunar.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
